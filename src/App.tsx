@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Flex, Heading } from "@chakra-ui/core"
+import React from "react"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Flex
+      width="100%"
+      height="100vh"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Heading>Makdown Editor</Heading>
+    </Flex>
+  )
 }
 
-export default App;
+export default App
