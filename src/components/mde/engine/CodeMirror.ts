@@ -32,6 +32,14 @@ export default class CodeMirror {
     this.core = cm.fromTextArea(ref, options)
   }
 
+  updateSelections(type: MdTypes) {
+    const formatter = transform(type)
+    if (formatter) {
+      const selections = this.core.getSelections()
+      this.core.replaceSelections(selections.map(formatter))
+    }
+  }
+
   onValueChange(handler: (param: any) => void) {
     if (!this.core) return
     this.core.on("change", ({ doc }: { doc: { getValue: () => string } }) =>
