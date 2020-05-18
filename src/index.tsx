@@ -8,13 +8,16 @@ import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
+import DocumentProvider from "./components/mde/DocumentProvider"
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <ColorModeProvider value="light">
         <CSSReset />
-        <App />
+        <DocumentProvider>
+          <App />
+        </DocumentProvider>
       </ColorModeProvider>
     </ThemeProvider>
   </React.StrictMode>,

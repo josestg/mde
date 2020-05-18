@@ -1,12 +1,19 @@
 import { Flex, Textarea, useColorMode } from "@chakra-ui/core"
-import React, { useContext, useEffect, useRef } from "react"
-import { DocumentContext } from "./DocumentProvider"
+import React, { useEffect, useRef, useState } from "react"
 import EditorThemeProvider from "./EditorThemeProvider"
 import CodeMirror, { EditorKeymaps } from "./engine/CodeMirror"
 
-const Editor: React.FunctionComponent = () => {
+interface EditorProps {
+  defaultValue: string
+  updateValue: (_: string) => void
+}
+
+const Editor: React.FunctionComponent<EditorProps> = ({
+  updateValue,
+  defaultValue,
+}) => {
   const { colorMode } = useColorMode()
-  const { updateValue, defaultValue } = useContext(DocumentContext)
+  const [editor, setEditor] = useState<CodeMirror>()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -18,8 +25,14 @@ const Editor: React.FunctionComponent = () => {
     })
     _editor.setKeyMaps(KEY_MAPS)
     _editor.setDefaultValue(defaultValue)
-    _editor.onValueChange((doc) => updateValue(doc))
-  }, [updateValue, defaultValue])
+    setEditor(_editor)
+  }, [defaultValue])
+
+  useEffect(() => {
+    if (editor) editor.onValueChange(updateValue)
+  }, [updateValue, editor])
+
+  console.count("Render")
 
   return (
     <Flex
