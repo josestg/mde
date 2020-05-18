@@ -1,8 +1,8 @@
 import { Flex, Textarea, useColorMode } from "@chakra-ui/core"
-import React, { useEffect, useRef, useState, useCallback } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import EditorThemeProvider from "./EditorThemeProvider"
-import CodeMirror, { EditorKeymaps } from "./engine/CodeMirror"
 import EditorToolbars from "./EditorToolbars"
+import CodeMirror, { EditorKeymaps } from "./engine/CodeMirror"
 
 interface EditorProps {
   defaultValue: string
@@ -42,13 +42,7 @@ const Editor: React.FunctionComponent<EditorProps> = ({
   )
 
   return (
-    <Flex
-      flex={1}
-      height="600px"
-      width="50%"
-      flexDirection="column"
-      zIndex={10}
-    >
+    <Flex flex={1} width="50%" flexDirection="column" zIndex={10}>
       <EditorThemeProvider colorMode={colorMode}>
         <EditorToolbars handleCmd={handleCmd} />
         <Textarea ref={textareaRef} />

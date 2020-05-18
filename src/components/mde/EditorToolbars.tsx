@@ -13,16 +13,15 @@ import {
   useColorMode,
   useDisclosure,
 } from "@chakra-ui/core"
-import React from "react"
+import React, { useContext } from "react"
 import { FaHeading } from "react-icons/fa"
-import { GoMarkdown } from "react-icons/go"
+import { GoMarkdown, GoScreenFull, GoScreenNormal } from "react-icons/go"
 import {
   MdCode,
   MdFormatBold,
   MdFormatItalic,
   MdFormatListNumbered,
   MdFormatQuote,
-  MdFullscreen,
   MdFunctions,
   MdHelp,
   MdImage,
@@ -30,6 +29,7 @@ import {
   MdStrikethroughS,
   MdViewModule,
 } from "react-icons/md"
+import { FullWindowContext } from "../../providers/FullWindow"
 import { MdTypes } from "./engine/CodeMirror"
 
 const EditorToolbarsTheme = {
@@ -50,11 +50,13 @@ interface EditorToolbarsProps {
 const EditorToolbars: React.FC<EditorToolbarsProps> = ({ handleCmd }) => {
   const { colorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { toggleFullWindow, fullWindow } = useContext(FullWindowContext)
 
   return (
     <Stack
       isInline
       p="1"
+      pr="2"
       spacing="3"
       fontSize="lg"
       display="flex"
@@ -128,8 +130,12 @@ const EditorToolbars: React.FC<EditorToolbarsProps> = ({ handleCmd }) => {
       <Box as={MdCode} onClick={() => handleCmd("code")} cursor="pointer" />
       <Box as={MdImage} cursor="pointer" onClick={() => handleCmd("image")} />
 
-      <Box as={MdHelp} onClick={onOpen} cursor="pointer" />
-      <Box as={MdFullscreen} onClick={() => {}} cursor="pointer" />
+      <Box ml="auto" as={MdHelp} onClick={onOpen} cursor="pointer" />
+      <Box
+        as={fullWindow ? GoScreenNormal : GoScreenFull}
+        onClick={toggleFullWindow}
+        cursor="pointer"
+      />
     </Stack>
   )
 }

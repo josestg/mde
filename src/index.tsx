@@ -7,8 +7,9 @@ import {
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
-import * as serviceWorker from "./serviceWorker"
 import DocumentProvider from "./components/mde/DocumentProvider"
+import FullWindowProvider from "./providers/FullWindow"
+import * as serviceWorker from "./serviceWorker"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.render(
       <ColorModeProvider value="light">
         <CSSReset />
         <DocumentProvider>
-          <App />
+          <FullWindowProvider>
+            <App />
+          </FullWindowProvider>
         </DocumentProvider>
       </ColorModeProvider>
     </ThemeProvider>

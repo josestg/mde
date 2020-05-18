@@ -28,7 +28,6 @@ const MdView: React.FC<MdViewProps> = () => {
     <Flex
       as={SlideFromLeft}
       flex={1}
-      height="600px"
       flexDirection="column"
       border="2px"
       borderLeft="0"
