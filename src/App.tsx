@@ -1,7 +1,9 @@
-import { Flex, Heading } from "@chakra-ui/core"
+import { Flex, IconButton, useColorMode } from "@chakra-ui/core"
 import React from "react"
+import Editor from "./components/mde"
 
 function App() {
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Flex
       width="100%"
@@ -9,7 +11,18 @@ function App() {
       alignItems="center"
       justifyContent="center"
     >
-      <Heading>Makdown Editor</Heading>
+      <Flex width="48rem" position="relative">
+        <IconButton
+          flexBasis="flex-start"
+          aria-label="toggle theme"
+          icon={colorMode === "dark" ? "sun" : "moon"}
+          position="absolute"
+          right="-80px"
+          top="0"
+          onClick={toggleColorMode}
+        />
+        <Editor />
+      </Flex>
     </Flex>
   )
 }
