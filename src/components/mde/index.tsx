@@ -1,26 +1,34 @@
 import { Flex, Textarea, useColorMode } from "@chakra-ui/core"
-import React, { useEffect, useRef } from "react"
+import React, { useContext, useEffect, useRef } from "react"
+import { DocumentContext } from "./DocumentProvider"
 import EditorThemeProvider from "./EditorThemeProvider"
 import CodeMirror, { EditorKeymaps } from "./engine/CodeMirror"
 
 const Editor: React.FunctionComponent = () => {
   const { colorMode } = useColorMode()
+  const { updateValue, defaultValue } = useContext(DocumentContext)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    const editor = new CodeMirror(textareaRef.current, {
+    const _editor = new CodeMirror(textareaRef.current, {
       lineNumbers: true,
       lineWrapping: true,
       scrollbarStyle: "null",
       theme: "twc",
     })
-
-    editor.setKeyMaps(KEY_MAPS)
-    editor.setDefaultValue("# Markdown Editor")
-  }, [])
+    _editor.setKeyMaps(KEY_MAPS)
+    _editor.setDefaultValue(defaultValue)
+    _editor.onValueChange((doc) => updateValue(doc))
+  }, [updateValue, defaultValue])
 
   return (
-    <Flex flex={1} height="600px" flexDirection="column">
+    <Flex
+      flex={1}
+      height="600px"
+      width="50%"
+      flexDirection="column"
+      zIndex={10}
+    >
       <EditorThemeProvider colorMode={colorMode}>
         <Textarea ref={textareaRef} />
       </EditorThemeProvider>
