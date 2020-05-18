@@ -48,7 +48,7 @@ function App() {
             placement="left"
             aria-label="toggle theme"
             label={`Change theme to ${
-              colorMode == "dark" ? "light" : "dark"
+              colorMode === "dark" ? "light" : "dark"
             } mode`}
             zIndex={100}
           >
