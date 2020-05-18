@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0bc1629d-4052-45cd-89da-2a6395a84669/deploy-status)](https://app.netlify.com/sites/hardcore-brown-c28b2c/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0bc1629d-4052-45cd-89da-2a6395a84669/deploy-status)](https://hardcore-brown-c28b2c.netlify.app/)
 
 # Markdown Editor
 
