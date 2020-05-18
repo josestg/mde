@@ -7,7 +7,7 @@ import { FullWindowContext } from "./providers/FullWindow"
 
 function App() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const [freeze, setFreeze] = useState(true)
+  const [freeze, setFreeze] = useState(false)
   const { defaultValue, updateValue } = useContext(DocumentContext)
   const { fullWindow } = useContext(FullWindowContext)
 

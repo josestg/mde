@@ -31,6 +31,8 @@ const MdView: React.FC<MdViewProps> = () => {
       flexDirection="column"
       border="2px"
       borderLeft="0"
+      overflowY="auto"
+      position="relative"
       borderColor={colorMode === "dark" ? "gray.700" : "gray.200"}
     >
       <MdViewThemeProvider colorMode={colorMode}>
@@ -58,6 +60,9 @@ const SlideFromLeft = styled.div`
   }
 
   animation: 0.7s ease 0s slideInFromLeft;
+  &::-webkit-scrollbar {
+    display: none; // hide scroll-bar
+  }
 `
 
 export default MdView

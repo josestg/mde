@@ -1,6 +1,30 @@
 import React, { useCallback, useState } from "react"
 
-const defaultValue = "# Mardown Editor"
+const defaultValue = `
+# Mardown Editor
+
+Lorem ipsum dolor sit __amet__, _consectetur_ ~~adipiscing~~ elit. Curabitur tincidunt.
+
+## Code Highlighting
+\`\`\`jsx{2}
+ReactDOM.render(
+	<App />,
+  document.getElementById("root")
+)
+\`\`\`
+
+## Latex
+
+$$$
+\\int_0^1{\\frac{1}{x} \\ dx}
+$$$
+
+## Table
+| Column A | Column B|
+|:---|:---:|
+|Align Left|Aligin Center|
+
+`
 
 export const DocumentContext = React.createContext({
   defaultValue: defaultValue,
