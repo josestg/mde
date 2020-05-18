@@ -1,6 +1,6 @@
 import { Box, Flex, useColorMode } from "@chakra-ui/core"
 import styled from "@emotion/styled"
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { DocumentContext } from "../mde/DocumentProvider"
 import { parseToHtml } from "./engine/parser"
 import MdViewThemeProvider from "./MdViewThemeProvider"
@@ -10,6 +10,19 @@ interface MdViewProps {}
 const MdView: React.FC<MdViewProps> = () => {
   const { colorMode } = useColorMode()
   const { value } = useContext(DocumentContext)
+  const [content, setContent] = useState("")
+  const firstRender = useRef(true)
+
+  useEffect(() => {
+    const content = parseToHtml(value)
+    if (firstRender.current) {
+      // 0.1s before animation end
+      setTimeout(() => setContent(content), 600)
+      firstRender.current = false
+    } else {
+      setContent(content)
+    }
+  }, [value])
 
   return (
     <Flex
@@ -26,7 +39,7 @@ const MdView: React.FC<MdViewProps> = () => {
           wordBreak="break-word"
           width="100%"
           px="4"
-          dangerouslySetInnerHTML={{ __html: parseToHtml(value) }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
       </MdViewThemeProvider>
     </Flex>
