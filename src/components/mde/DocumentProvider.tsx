@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react"
 
 const defaultValue = `
-# Mardown Editor
+# Markdown Editor
 
 Lorem ipsum dolor sit __amet__, _consectetur_ ~~adipiscing~~ elit. Curabitur tincidunt.
 
