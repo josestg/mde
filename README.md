@@ -2,6 +2,8 @@
 
 # Markdown Editor
 
+![Dark](images/dark.png)
+
 ## Features
 
 1. ✅ Full markdown syntax
