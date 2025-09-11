@@ -2,7 +2,7 @@ import React from "react"
 import EditorPage from "./pages/Editor"
 
 const App: React.FC = () => {
-  return <EditorPage />
+  AAAAAAAA
 }
 
 export default App
